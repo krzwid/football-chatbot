@@ -1,0 +1,333 @@
+<aiml version="1.0.1" encoding="UTF-8">
+<!-- basic_chat.aiml -->
+
+    <category>
+        <pattern>*</pattern>
+        <template>
+            NIESTETY NIE ROZUMIEM. JESTEM BOTEM JESTEM PIŁKARSKIM BOTEM.\n
+            MOGĘ PODAĆ CI WYNIKI MECZÓW Z RÓŻNYCH KRAJÓW I ROZGRYWEK.\n
+            ABY DOWIEDZIEC SIE JAKIE KONKRETNIE PYTANIA ZADAC WPISZ:\n
+            O CO MOGE SIE ZAPYTAC
+        </template>
+    </category>
+
+    <category>
+        <pattern>WITAJ</pattern>
+        <template>
+            <srai>CZESC</srai>
+        </template>
+    </category>
+    <category>
+        <pattern>USZANOWANKO</pattern>
+        <template>
+            <srai>CZESC</srai>
+        </template>
+    </category>
+     <category>
+        <pattern>WITAM</pattern>
+        <template>
+            <srai>CZESC</srai>
+        </template>
+    </category>
+    <category>
+        <pattern>SIEMKA</pattern>
+        <template>
+            <srai>CZESC</srai>
+        </template>
+    </category>
+     <category>
+        <pattern>JOL</pattern>
+        <template>
+            <srai>CZESC</srai>
+        </template>
+    </category>
+     <category>
+        <pattern>SIEMA</pattern>
+        <template>
+            <srai>CZESC</srai>
+        </template>
+    </category>
+    <category>
+        <pattern>CZESC</pattern>
+        <template>
+            <random>
+                <li>CZESC</li>
+                <li>SIEMKA</li>
+                <li>WITAJ</li>
+                <li>USZANOWANKO</li>
+                <li>DZIEN DOBRY</li>
+                <li>WITAM</li>
+            </random>
+            JESTEM BOTEM JESTEM PIŁKARSKIM BOTEM.\n
+            MOGĘ PODAĆ CI WYNIKI MECZÓW Z RÓŻNYCH KRAJÓW I ROZGRYWEK.\n
+            ABY DOWIEDZIEC SIE JAKIE KONKRETNIE PYTANIA ZADAC WPISZ:\n
+            O CO MOGE SIE ZAPYTAC
+        </template>
+    </category>
+
+     <category>
+        <pattern>O CO MOGE SIE ZAPYTAC</pattern>
+        <template>
+            OTO LISTA DOSTEPNYCH POLECEN I PYTAN:\n
+            - WYSWIETL DOSTEPNE KRAJE\n
+            - WYSWIETL DOSTEPNE ROZGRYWKI\n
+            - WYBIERAM KRAJ (KRAJ)\n
+            - WYBIERAM ROZGRYWKI (ROZGRYWKI)\n
+            - PODAJ MECZE OD (DD MM RRRR) DO (DD MM RRRR) Z KRAJU\n
+            - PODAJ MECZE OD (DD MM RRRR) DO (DD MM RRRR) Z ROZGRYWEK\n
+        </template>
+    </category>
+
+    <category>
+        <pattern>WYSWIETL DOSTEPNE KRAJE</pattern>
+        <template>
+            LISTA DOSTEPNYCH KRAJÓW:\n
+            - ANGLIA\n
+            - FRANCJA\n
+            - NIEMCY\n
+            - WLOCHY\n
+            - HOLANDIA\n
+            - PORTUGALIA\n
+            - HISZPANIA\n
+        </template>
+    </category>
+
+    <category>
+        <pattern>WYSWIETL DOSTEPNE ROZGRYWKI</pattern>
+        <template>
+            LISTA DOSTEPNYCH KRAJÓW:\n
+            - EUROPEAN CHAMPIONSHIP\n
+            - UEFA CHAMPIONS LEAGUE\n
+            - CHAMPIONSHIP\n
+            - PREMIER LEAGUE\n
+            - LIGUE 1\n
+            - BUNDESLIGA\n
+            - SERIE A\n
+            - EREDIVISE\n
+            - PRIMIERA LIGA\n
+            - PRIMERA DIVISION\n
+        </template>
+    </category>
+
+    <category>
+        <pattern>WYBIERAM KRAJ ANGLIA</pattern>
+        <template>
+            <think>
+                <set name="kraj"><star/></set>
+            </think>
+            W ANGLII SA ROZGRYWKI PREMIER LEAGUE ORAZ CHAMPIONSHIP. KTORE WYBIERASZ?
+            <star/>
+        </template>
+    </category>
+
+    <category>
+        <pattern>* CHAMPIONSHIP *</pattern>
+        <template>
+            <think>
+                <set name="kraj">anglia</set>
+                <set name="rozgrywki">championship</set>
+            </think>
+            OK, ROZUMIEM. MOGE PODAC CI WYNIKI MECZOW Z CHAMPIONSHIP.\n
+            WPISZ JEDYNIE DATE LUB PRZEDZIAŁ DAT W FORMACIE:\n
+            OD (DD MM RRRR) DO (DD MM RRRR)
+            <star/>
+        </template>
+    </category>
+
+    <category>
+        <pattern>* PREMIER LEAGUE *</pattern>
+        <template>
+            <think>
+                <set name="kraj">anglia</set>
+                <set name="rozgrywki">premier league</set>
+            </think>
+            OK, ROZUMIEM. MOGE PODAC CI WYNIKI MECZOW Z PREMIER LEAGUE.\n
+            WPISZ JEDYNIE DATE LUB PRZEDZIAŁ DAT W FORMACIE:\n
+            OD (DD MM RRRR) DO (DD MM RRRR)
+            <star/>
+        </template>
+    </category>
+
+    <category>
+        <pattern>WYBIERAM *</pattern>
+        <template>
+            NAPISZ KONKRETNIE CO WYBIERASZ, MOŻLIWE OPCJE:\n
+            - WYBIERAM KRAJ (KRAJ)\n
+            - WYBIERAM ROZGRYWKI (ROZGRYWKI)\n
+        </template>
+    </category>
+
+     <category>
+        <pattern>WYBIERAM KRAJ *</pattern>
+        <template>
+            <think><set name="kraj"><star/></set></think>
+            <condition name="kraj">
+                <li value="FRANCJA"><think><set name="rozgrywki">LIGUE 1</set></think>OK, ROZUMIEM. MOGE PODAC CI WYNIKI MECZOW Z <star/>\n
+                    WPISZ JEDYNIE DATE LUB PRZEDZIAŁ DAT W FORMACIE:\n
+                    OD (DD MM RRRR) DO (DD MM RRRR)</li>
+                <li value="NIEMCY"><think><set name="rozgrywki">BUNDESLIGA</set></think>OK, ROZUMIEM. MOGE PODAC CI WYNIKI MECZOW Z <star/> Z <get name="rozgrywki"/>\n
+                    WPISZ JEDYNIE DATE LUB PRZEDZIAŁ DAT W FORMACIE:\n
+                    OD (DD MM RRRR) DO (DD MM RRRR)</li>
+                <li value="WLOCHY"><think><set name="rozgrywki">SERIE A</set></think>OK, ROZUMIEM. MOGE PODAC CI WYNIKI MECZOW Z <star/> Z <get name="rozgrywki"/>\n
+                    WPISZ JEDYNIE DATE LUB PRZEDZIAŁ DAT W FORMACIE:\n
+                    OD (DD MM RRRR) DO (DD MM RRRR)</li>
+                <li value="HOLANDIA"><think><set name="rozgrywki">EREDIVISE</set></think>OK, ROZUMIEM. MOGE PODAC CI WYNIKI MECZOW Z <star/> Z <get name="rozgrywki"/>\n
+                    WPISZ JEDYNIE DATE LUB PRZEDZIAŁ DAT W FORMACIE:\n
+                    OD (DD MM RRRR) DO (DD MM RRRR)</li>
+                <li value="PORTUGALIA"><think><set name="rozgrywki">PRIMIERA LIGA</set></think>OK, ROZUMIEM. MOGE PODAC CI WYNIKI MECZOW Z <star/> Z <get name="rozgrywki"/>\n
+                    WPISZ JEDYNIE DATE LUB PRZEDZIAŁ DAT W FORMACIE:\n
+                    OD (DD MM RRRR) DO (DD MM RRRR)</li>
+                <li value="HISZPANIA"><think><set name="rozgrywki">PRIMERA DIVISION</set></think>OK, ROZUMIEM. MOGE PODAC CI WYNIKI MECZOW Z <star/>, Z <get name="rozgrywki"/>\n
+                    WPISZ JEDYNIE DATE LUB PRZEDZIAŁ DAT W FORMACIE:\n
+                    OD (DD MM RRRR) DO (DD MM RRRR)</li>
+                <li value="BRAZYLIA"><think><set name="rozgrywki">série a</set></think>OK, ROZUMIEM. MOGE PODAC CI WYNIKI MECZOW Z <star/>\n
+                    WPISZ JEDYNIE DATE LUB PRZEDZIAŁ DAT W FORMACIE:\n
+                    OD (DD MM RRRR) DO (DD MM RRRR)</li>
+                <li>NIESTETY TEN KRAJ (<star/>) NIE JEST DOSTEPNY</li>
+            </condition>
+        </template>
+    </category>
+
+
+
+    <category>
+        <pattern>WYBIERAM ROZGRYWKI *</pattern>
+        <template>
+            <think><set name="pomocnicze"><star/></set></think>
+            <condition name="pomocnicze">
+                <li value="LIGUE 1">
+                    <think>
+                        <set name="rozgrywki"><star/></set>
+                        <set name="kraj">FRANCJA</set>
+                    </think>
+                    OK, ROZUMIEM. MOGE PODAC CI WYNIKI MECZOW Z <get name="kraj"/>, Z <get name="rozgrywki"/>\n
+                    WPISZ JEDYNIE DATE LUB PRZEDZIAŁ DAT W FORMACIE:\n
+                    OD (DD MM RRRR) DO (DD MM RRRR)
+                </li>
+                <li value="BUNDESLIGA">
+                    <think>
+                        <set name="rozgrywki"><star/></set>
+                        <set name="kraj">NIEMCY</set>
+                    </think>
+                    OK, ROZUMIEM. MOGE PODAC CI WYNIKI MECZOW Z <get name="kraj"/>, Z <get name="rozgrywki"/>\n
+                    WPISZ JEDYNIE DATE LUB PRZEDZIAŁ DAT W FORMACIE:\n
+                    OD (DD MM RRRR) DO (DD MM RRRR)
+                </li>
+                <li value="SERIE A">
+                    <think>
+                        <set name="rozgrywki"><star/></set>
+                        <set name="kraj">WLOCHY</set>
+                    </think>
+                    OK, ROZUMIEM. MOGE PODAC CI WYNIKI MECZOW Z <get name="kraj"/>, Z <get name="rozgrywki"/>\n
+                    WPISZ JEDYNIE DATE LUB PRZEDZIAŁ DAT W FORMACIE:\n
+                    OD (DD MM RRRR) DO (DD MM RRRR)
+                </li>
+                <li value="EREDIVISE">
+                    <think>
+                        <set name="rozgrywki"><star/></set>
+                        <set name="kraj">HOLANDIA</set>
+                    </think>
+                    OK, ROZUMIEM. MOGE PODAC CI WYNIKI MECZOW Z <get name="kraj"/>, Z <get name="rozgrywki"/>\n
+                    WPISZ JEDYNIE DATE LUB PRZEDZIAŁ DAT W FORMACIE:\n
+                    OD (DD MM RRRR) DO (DD MM RRRR)
+                </li>
+                <li value="PRIMIERA LIGA">
+                    <think>
+                        <set name="rozgrywki"><star/></set>
+                        <set name="kraj">PORTUGALIA</set>
+                    </think>
+                    OK, ROZUMIEM. MOGE PODAC CI WYNIKI MECZOW Z <get name="kraj"/>, Z <get name="rozgrywki"/>\n
+                    WPISZ JEDYNIE DATE LUB PRZEDZIAŁ DAT W FORMACIE:\n
+                    OD (DD MM RRRR) DO (DD MM RRRR)
+                </li>
+                <li value="PRIMERA DIVISION">
+                    <think>
+                        <set name="rozgrywki"><star/></set>
+                        <set name="kraj">HISZPANIA</set>
+                    </think>
+                    OK, ROZUMIEM. MOGE PODAC CI WYNIKI MECZOW Z <get name="kraj"/>, Z <get name="rozgrywki"/>\n
+                    WPISZ JEDYNIE DATE LUB PRZEDZIAŁ DAT W FORMACIE:\n
+                    OD (DD MM RRRR) DO (DD MM RRRR)
+                </li>
+                <li value="série a">
+                    <think>
+                        <set name="rozgrywki"><star/></set>
+                        <set name="kraj">BRAZYLIA</set>
+                    </think>
+                    OK, ROZUMIEM. MOGE PODAC CI WYNIKI MECZOW Z <get name="kraj"/>, Z <get name="rozgrywki"/>\n
+                    WPISZ JEDYNIE DATE LUB PRZEDZIAŁ DAT W FORMACIE:\n
+                    OD (DD MM RRRR) DO (DD MM RRRR)
+                </li>
+                <li value="UEFA CHAMPIONS LEAGUE">
+                    <think>
+                        <set name="rozgrywki"><star/></set>
+                        <set name="kraj"/>
+                    </think>
+                    OK, ROZUMIEM. MOGE PODAC CI WYNIKI MECZOW Z <get name="rozgrywki"/>\n
+                    WPISZ JEDYNIE DATE LUB PRZEDZIAŁ DAT W FORMACIE:\n
+                    OD (DD MM RRRR) DO (DD MM RRRR)
+                </li>
+                <li value="EUROPEAN CHAMPIONSHIP">
+                    <think>
+                        <set name="rozgrywki"><star/></set>
+                        <set name="kraj"/>
+                    </think>
+                    OK, ROZUMIEM. MOGE PODAC CI WYNIKI MECZOW Z <get name="rozgrywki"/>\n
+                    WPISZ JEDYNIE DATE LUB PRZEDZIAŁ DAT W FORMACIE:\n
+                    OD (DD MM RRRR) DO (DD MM RRRR)
+                </li>
+                <li value="FIFA WORLD CUP">
+                    <think>
+                        <set name="rozgrywki"><star/></set>
+                        <set name="kraj"/>
+                    </think>
+                    OK, ROZUMIEM. MOGE PODAC CI WYNIKI MECZOW Z <get name="rozgrywki"/>\n
+                    WPISZ JEDYNIE DATE LUB PRZEDZIAŁ DAT W FORMACIE:\n
+                    OD (DD MM RRRR) DO (DD MM RRRR)
+                </li>
+                <li>
+                    NIESTETY TE ROZGRYWKI: <star/> NIE SA DOSTEPNE\n
+                    DOSTEPNE ROZGRYWKI TO:\n
+                    - EUROPEAN CHAMPIONSHIP\n
+                    - UEFA CHAMPIONS LEAGUE\n
+                    - CHAMPIONSHIP\n
+                    - PREMIER LEAGUE\n
+                    - LIGUE 1\n
+                    - BUNDESLIGA\n
+                    - SERIE A\n
+                    - EREDIVISE\n
+                    - PRIMIERA LIGA\n
+                    - PRIMERA DIVISION\n
+                </li>
+            </condition>
+        </template>
+    </category>
+
+    <category>
+        <pattern> OD *</pattern>
+        <template>
+            <condition name="rozgrywki">
+                <li value="">NAJPIERW WYBIERZ KRAJ LUB ROZGRYWKI</li>
+                <li>
+                    LISTA MECZÓW Z <get name="kraj"/>, <get name="rozgrywki"/>:\n
+                    OD <star/> DO DZIŚ:\n
+                    ##FOOTBALL##<star/>, <get name="today"/>, <get name="rozgrywki"/>##
+                </li>
+            </condition>
+        </template>
+    </category>
+
+    <category>
+        <pattern> OD * DO *</pattern>
+        <template>
+             <condition name="rozgrywki">
+                <li value="">NAJPIERW WYBIERZ KRAJ LUB ROZGRYWKI</li>
+                <li>
+                    LISTA MECZÓW Z <get name="kraj"/>, <get name="rozgrywki"/>:\n
+                    ##FOOTBALL##<star index="1"/>, <star index="2"/>, <get name="rozgrywki"/>##
+                </li>
+             </condition>
+        </template>
+    </category>
+
+</aiml>
