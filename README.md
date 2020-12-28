@@ -8,11 +8,15 @@ Bot is connected to https://www.football-data.org/ API. <br>
 See the API documentation: https://www.football-data.org/documentation/quickstart
 
 ## Get started
+To install dependencies use:
+`pip install football-data-api`
+`pip install python-aiml`
+
 To get started you need API key, available for free here: https://www.football-data.org/client/register <br>
 Do not forget to change your environmental variables:
 `PYTHONUNBUFFERED=1;FOOTBALL_DATA_API=YOUR_GENERATED_KEY`
 
-##Overwiew
+## Overwiew
 
 Full list of available questions to bot:
 ```           
